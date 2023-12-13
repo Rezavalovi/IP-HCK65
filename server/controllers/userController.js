@@ -1,14 +1,40 @@
 const { User } = require('../models');
 const { signToken } = require('../helpers/jwt');
 const { hashPassword, comparePassword } = require('../helpers/bcrypt');
+const nodemailer = require("nodemailer");
+
+const { OAuth2Client } = require('google-auth-library')
+const client = new OAuth2Client
 
 class UserController {
 
     static async register(req, res, next) {
+
         try {
             let { username, email, password, phoneNumber, address } = req.body
             let hashedPassword = hashPassword(password)
             const createdUser = await User.create({ username, email, password: hashedPassword, phoneNumber, address })
+            const transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                    user: "rezavalovi98@gmail.com",
+                    pass: process.env.PASSWORD_EMAIL,
+                },
+            });
+
+            async function main() {
+                // send mail with defined transport object
+                const info = await transporter.sendMail({
+                    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+                    to: createdUser.email, // list of receivers
+                    subject: "Hello ✔", // Subject line
+                    text: "Hello world?", // plain text body
+                    html: "<b>Hello world?</b>", // html body
+                });
+                console.log("Message sent: %s", info.messageId);
+            }
+            main().catch(console.error);
+
             res.status(201).json({
                 "username": createdUser.username,
                 "email": createdUser.email,
@@ -59,6 +85,44 @@ class UserController {
             res.status(200).json({ access_token, role: user.role })
         } catch (error) {
             console.log(error.message);   // budget investment
+            next(error)
+        }
+    }
+
+    static async googleLogin(req, res, next) {
+        try {
+            const { google_token } = req.body
+
+            const ticket = await client.verifyIdToken({
+                idToken: google_token,
+                audience: "983248272931-me4cbpilgoog8bf3vk2t86ukccfc814m.apps.googleusercontent.com"
+            })
+            const payload = ticket.getPayload()
+
+            const [user, created] = await User.findOrCreate({
+                where: {
+                    email: payload.email
+                },
+                defaults: {
+                    username: payload.name,
+                    email: payload.email,
+                    password: Math.random().toString(),
+                    phoneNumber: payload.phoneNumber,
+                    address: payload.address
+                }
+            })
+
+            const access_token = signToken({ id: user.id })
+
+            res.status(created ? 200 : 200).json({
+                "message": `User ${user.email} found`,
+                "access_token": access_token,
+                "user": {
+                    "name": user.name
+                }
+            })
+
+        } catch (error) {
             next(error)
         }
     }
