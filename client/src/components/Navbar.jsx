@@ -1,5 +1,35 @@
+import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2";
+
+
 
 export const Navbar = () => {
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        Swal.fire({
+            title: "Do you want to logout?",
+            text: "!!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("access_token")
+                navigate("/login")
+
+                Swal.fire({
+                    title: "Successfully!",
+                    text: "See you!!",
+                    icon: "success"
+                });
+            }
+        });
+
+    }
+
     return (
         <>
             <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -70,7 +100,8 @@ export const Navbar = () => {
                         </div>
                     </div>
                     <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                        <button
+                        <button className="flex-1 ms-3 whitespace-nowrap" style={{ color: 'white'}}onClick={handleLogout}>Logout</button>
+                        {/* <button
                             type="button"
                             className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                             id="user-menu-button"
@@ -84,11 +115,12 @@ export const Navbar = () => {
                                 src="/docs/images/people/profile-picture-3.jpg"
                                 alt="user photo"
                             />
-                        </button>
+                        </button> */}
+
 
 
                         {/* Dropdown menu */}
-                        <div
+                        {/* <div
                             className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                             id="user-dropdown"
                         >
@@ -134,8 +166,8 @@ export const Navbar = () => {
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                        <button
+                        </div> */}
+                        {/* <button
                             data-collapse-toggle="navbar-user"
                             type="button"
                             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -158,7 +190,7 @@ export const Navbar = () => {
                                     d="M1 1h15M1 7h15M1 13h15"
                                 />
                             </svg>
-                        </button>
+                        </button> */}
                     </div>
 
 

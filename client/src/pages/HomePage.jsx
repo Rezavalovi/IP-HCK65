@@ -1,12 +1,11 @@
-import { Navbar } from "../components/Navbar";
-import { SideBar } from "../components/SideBar";
+// import { Cards } from "../components/Cards";
+import { Home } from "../components/Home";
+// import { SideBar } from "../components/SideBar";
 
 export default function HomePage() {
     return (
         <>
-            <Navbar />
-            <SideBar />
-
+            <Home />
         </>
     )
 }

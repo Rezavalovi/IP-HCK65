@@ -2,8 +2,8 @@ import { createBrowserRouter, redirect } from "react-router-dom";
 import LoginPage from "../src/pages/LoginPage";
 import RegisterPage from "../src/pages/RegisterPage";
 import HomePage from "../src/pages/HomePage";
-import { ChannelPage } from "../src/pages/ChannelPage";
-import { DetailPage } from "../src/pages/DetailPage";
+// import { ChannelPage } from "../src/pages/ChannelPage";
+// import { DetailPage } from "../src/pages/DetailPage";
 
 
 
@@ -35,15 +35,15 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <RegisterPage />
-    },
-    {
-        path: "/channel",
-        element: <ChannelPage />
-    },
-    {
-        path: "/detail",
-        element: <DetailPage />
     }
+    // {
+    //     path: "/channel",
+    //     element: <ChannelPage />
+    // },
+    // {
+    //     path: "/detail",
+    //     element: <DetailPage />
+    // }
 
 
 ]);

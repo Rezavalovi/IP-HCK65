@@ -9,7 +9,6 @@ const client = new OAuth2Client
 class UserController {
 
     static async register(req, res, next) {
-
         try {
             let { username, email, password, phoneNumber, address } = req.body
             let hashedPassword = hashPassword(password)
@@ -25,11 +24,11 @@ class UserController {
             async function main() {
                 // send mail with defined transport object
                 const info = await transporter.sendMail({
-                    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+                    from: '"Reza Valovi" <foo@example.com>', // sender address
                     to: createdUser.email, // list of receivers
                     subject: "Hello ✔", // Subject line
-                    text: "Hello world?", // plain text body
-                    html: "<b>Hello world?</b>", // html body
+                    text: "You are succes registed", // plain text body
+                    html: "<b>You are succes registed</b>", // html body
                 });
                 console.log("Message sent: %s", info.messageId);
             }
@@ -84,7 +83,7 @@ class UserController {
 
             res.status(200).json({ access_token, role: user.role })
         } catch (error) {
-            console.log(error.message);   // budget investment
+            console.log(error.message);   
             next(error)
         }
     }
@@ -95,7 +94,7 @@ class UserController {
 
             const ticket = await client.verifyIdToken({
                 idToken: google_token,
-                audience: "983248272931-me4cbpilgoog8bf3vk2t86ukccfc814m.apps.googleusercontent.com"
+                audience: process.env.GOOGLE_CLIENT_ID
             })
             const payload = ticket.getPayload()
 
@@ -114,7 +113,7 @@ class UserController {
 
             const access_token = signToken({ id: user.id })
 
-            res.status(created ? 200 : 200).json({
+            res.status(created ? 201 : 200).json({
                 "message": `User ${user.email} found`,
                 "access_token": access_token,
                 "user": {
