@@ -2,6 +2,8 @@ import { createBrowserRouter, redirect } from "react-router-dom";
 import LoginPage from "../src/pages/LoginPage";
 import RegisterPage from "../src/pages/RegisterPage";
 import HomePage from "../src/pages/HomePage";
+import Detail from "../src/pages/Detail";
+import Favorite from "../src/pages/Favorite";
 // import { ChannelPage } from "../src/pages/ChannelPage";
 // import { DetailPage } from "../src/pages/DetailPage";
 
@@ -35,11 +37,15 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <RegisterPage />
+    },
+    {
+        path: "/:id",
+        element: <Detail />
+    },
+    {
+        path: "/favorite",
+        element: <Favorite />
     }
-    // {
-    //     path: "/channel",
-    //     element: <ChannelPage />
-    // },
     // {
     //     path: "/detail",
     //     element: <DetailPage />

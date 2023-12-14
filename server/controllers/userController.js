@@ -81,9 +81,9 @@ class UserController {
             }
             const access_token = signToken({ id: user.id })
 
-            res.status(200).json({ access_token, role: user.role })
+            res.status(200).json({ access_token, id: user.id })
         } catch (error) {
-            console.log(error.message);   
+            console.log(error.message);
             next(error)
         }
     }
@@ -116,9 +116,7 @@ class UserController {
             res.status(created ? 201 : 200).json({
                 "message": `User ${user.email} found`,
                 "access_token": access_token,
-                "user": {
-                    "name": user.name
-                }
+                "id": user.id
             })
 
         } catch (error) {

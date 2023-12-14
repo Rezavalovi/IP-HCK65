@@ -17,6 +17,7 @@ export default function LoginPage() {
             const google_token = response.credential;
             const { data } = await Axios.post("http://localhost:3000/users/google-login", { google_token: google_token });
             localStorage.setItem("access_token", data.access_token);
+            localStorage.setItem("id", data.id);
             navigate("/")
         } catch (error) {
             console.log(error);
@@ -40,6 +41,7 @@ export default function LoginPage() {
         try {
             const { data } = await Axios.post('http://localhost:3000/users/login', dataForm)
             localStorage.setItem('access_token', data.access_token)
+            localStorage.setItem('id', data.id)
             navigate('/')
         } catch (error) {
             console.log(error)

@@ -18,16 +18,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Favorite.init({
-    avatarUrl: DataTypes.STRING,
-    type: DataTypes.STRING,
-    canonicalBaseUrl: DataTypes.STRING,
-    channelId: DataTypes.STRING,
-    titelChannel: DataTypes.STRING,
-    description: DataTypes.STRING,
-    thumbnailUrl: DataTypes.STRING,
+    avatarUrl: DataTypes.TEXT,
+    type: DataTypes.TEXT,
+    canonicalBaseUrl: DataTypes.TEXT,
+    channelId: DataTypes.TEXT,
+    titleChannel: DataTypes.TEXT,
+    description: DataTypes.TEXT,
+    thumbnailUrl: DataTypes.TEXT,
     views: DataTypes.INTEGER,
-    videoId: DataTypes.STRING,
-    titleVideo: DataTypes.STRING,
+    videoId: DataTypes.TEXT,
+    titleVideo: DataTypes.TEXT,
     UserId: DataTypes.INTEGER
   }, {
     sequelize,

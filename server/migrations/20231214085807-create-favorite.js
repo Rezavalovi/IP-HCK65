@@ -10,34 +10,34 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       avatarUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       type: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       canonicalBaseUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       channelId: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
-      titelChannel: {
-        type: Sequelize.STRING
+      titleChannel: {
+        type: Sequelize.TEXT
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       thumbnailUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       views: {
         type: Sequelize.INTEGER
       },
       videoId: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       titleVideo: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       UserId: {
         type: Sequelize.INTEGER,
