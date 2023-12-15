@@ -10,7 +10,6 @@ const Favorite = () => {
   const navigate = useNavigate()
   const id = localStorage.getItem("id")
 
-
   const [data, setData] = useState([])
   const fetchData = async () => {
     try {
@@ -64,7 +63,6 @@ const Favorite = () => {
   //   console.log(id)
   // }
 
-
   useEffect(() => {
     fetchData()
   }, [])
@@ -86,7 +84,7 @@ const Favorite = () => {
       <div className='w-full flex flex-wrap gap-5 pb-10 '>
         {data && data.length > 0 ? data.map((el) => {
           return (
-            <Cards key={el.id} judul={el.titleVideo} avatar={el.avatarUrl} thumnail={el.thumbnailUrl} channel={el.titleChannel} onClick={() => handleCardClick(el.videoId)} type={"favorite"} />
+            <Cards key={el.id} id={el.id} judul={el.titleVideo} avatar={el.avatarUrl} thumnail={el.thumbnailUrl} channel={el.titleChannel} onClick={() => handleCardClick(el.videoId)} type={"favorite"} />
           )
         }) : ""}
 

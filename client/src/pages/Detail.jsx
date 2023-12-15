@@ -65,10 +65,6 @@ const Detail = () => {
 
   }
 
-
-
-
-
   useEffect(() => {
     fetchdata()
   }, [id])
@@ -182,10 +178,10 @@ const Detail = () => {
                   Gabung
                 </button>
                 <button className='w-24 bg-black text-white rounded-full h-10 font-black'>
-                  Subribe
+                  Subcribe
                 </button>
                 <button className='w-24 bg-slate-50 border-[1px] border-slate-300 font-black rounded-full h-10' onClick={(e) => submitFavorite(e)}>
-                  + Vaforite
+                  + Favorites
                 </button>
               </div>
             </div>

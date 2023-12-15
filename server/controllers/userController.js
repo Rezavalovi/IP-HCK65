@@ -41,7 +41,6 @@ class UserController {
                 "address": createdUser.address
             })
         } catch (error) {
-            console.log(error.message);
             next(error)
         }
     }

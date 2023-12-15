@@ -8,7 +8,6 @@ class FavoriteController {
 
             res.status(200).json(data)
         } catch (error) {
-            console.log(error);
             next(error)
         }
     }
@@ -42,7 +41,6 @@ class FavoriteController {
                 data: createdFavorite
             })
         } catch (error) {
-            // console.log(error);
             next(error);
         }
     }
@@ -60,7 +58,6 @@ class FavoriteController {
                 message: "Favorite deleted",
             })
         } catch (error) {
-            console.log(error.message);
             next(error);
         }
     }

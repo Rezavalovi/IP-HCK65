@@ -8,7 +8,7 @@ class Controller {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "059c615db4msh9c364b761185758p1b6166jsn17dff421054b",
+            "6c33d60a00msh2d45d764575277bp107f6bjsnf17e1a683448",
           "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
         },
       });
@@ -45,7 +45,7 @@ class Controller {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "059c615db4msh9c364b761185758p1b6166jsn17dff421054b",
+            "6c33d60a00msh2d45d764575277bp107f6bjsnf17e1a683448",
           "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
         },
       });
@@ -84,7 +84,7 @@ class Controller {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "059c615db4msh9c364b761185758p1b6166jsn17dff421054b",
+            "6c33d60a00msh2d45d764575277bp107f6bjsnf17e1a683448",
           "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
         },
       });
@@ -111,7 +111,6 @@ class Controller {
 
       res.status(200).json(response);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }
@@ -124,7 +123,7 @@ class Controller {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "059c615db4msh9c364b761185758p1b6166jsn17dff421054b",
+            "6c33d60a00msh2d45d764575277bp107f6bjsnf17e1a683448",
           "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
         },
       });
@@ -157,7 +156,7 @@ class Controller {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "059c615db4msh9c364b761185758p1b6166jsn17dff421054b",
+            "6c33d60a00msh2d45d764575277bp107f6bjsnf17e1a683448",
           "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
         },
       });
@@ -191,7 +190,7 @@ class Controller {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "059c615db4msh9c364b761185758p1b6166jsn17dff421054b",
+            "6c33d60a00msh2d45d764575277bp107f6bjsnf17e1a683448",
           "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
         },
       });
@@ -221,7 +220,7 @@ class Controller {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "059c615db4msh9c364b761185758p1b6166jsn17dff421054b",
+            "6c33d60a00msh2d45d764575277bp107f6bjsnf17e1a683448",
           "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
         },
       });
