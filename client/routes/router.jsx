@@ -4,6 +4,7 @@ import RegisterPage from "../src/pages/RegisterPage";
 import HomePage from "../src/pages/HomePage";
 import Detail from "../src/pages/Detail";
 import Favorite from "../src/pages/Favorite";
+import UpdateForm from "../src/pages/EditPage";
 // import { ChannelPage } from "../src/pages/ChannelPage";
 // import { DetailPage } from "../src/pages/DetailPage";
 
@@ -45,11 +46,11 @@ const router = createBrowserRouter([
     {
         path: "/favorite",
         element: <Favorite />
+    },
+    {
+        path: "/profile",
+        element: <UpdateForm />
     }
-    // {
-    //     path: "/detail",
-    //     element: <DetailPage />
-    // }
 
 
 ]);

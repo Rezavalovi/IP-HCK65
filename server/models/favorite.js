@@ -21,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
     avatarUrl: DataTypes.TEXT,
     type: DataTypes.TEXT,
     canonicalBaseUrl: DataTypes.TEXT,
-    channelId: DataTypes.TEXT,
+    channelId: DataTypes.INTEGER,
     titleChannel: DataTypes.TEXT,
     description: DataTypes.TEXT,
     thumbnailUrl: DataTypes.TEXT,
     views: DataTypes.INTEGER,
-    videoId: DataTypes.TEXT,
+    videoId: DataTypes.INTEGER,
     titleVideo: DataTypes.TEXT,
     UserId: DataTypes.INTEGER
   }, {

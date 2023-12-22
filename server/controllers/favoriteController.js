@@ -4,8 +4,7 @@ const { Favorite } = require("../models");
 class FavoriteController {
     static async getAll(req, res, next) {
         try {
-            const data = await Favorite.getAll()
-
+            const data = await Favorite.findAll()
             res.status(200).json(data)
         } catch (error) {
             next(error)
@@ -23,18 +22,16 @@ class FavoriteController {
 
             res.status(200).json(data)
         } catch (error) {
-            // console.log(error);
             next(error)
         }
     }
 
     static async addFavorite(req, res, next) {
         try {
-            console.log("masuk")
             const { avatarUrl, type, canonicalBaseUrl, channelId, titleChannel, description, thumbnailUrl, views, videoId, titleVideo } = req.body
 
             let body =
-                { avatarUrl, type, canonicalBaseUrl, channelId, titleChannel, description, thumbnailUrl, views, videoId, titleVideo, UserId: req.user.id }
+                { avatarUrl, type, canonicalBaseUrl, channelId, titleChannel, description, thumbnailUrl, views, videoId, titleVideo, a: req.user.id }
             const createdFavorite = await Favorite.create(body)
             res.status(200).json({
                 message: "Favorite added",
@@ -64,7 +61,21 @@ class FavoriteController {
 
     // static async updateFavorite(req, res, next) {
     //     try {
+    //         let { id } = req.params
+    //         let { avatarUrl, type, canonicalBaseUrl, channelId, titleChannel, description, thumbnailUrl, views, videoId, titleVideo  } = req.body
 
+    //         await Favorite.update({
+    //             avatarUrl, type, canonicalBaseUrl, channelId, titleChannel, description, thumbnailUrl, views, videoId, titleVideo 
+    //         }, {
+    //             where: {
+    //                 id: id
+    //             }
+    //         })
+    //         let data = await Favorite.findByPk(id)
+    //         if (!data) {
+    //             throw { name: "NotFound" }
+    //         }
+    //         res.status(200).json(da)
     //     } catch (error) {
     //         console.log(error.message);
     //         next(error);

@@ -11,8 +11,7 @@ class UserController {
     static async register(req, res, next) {
         try {
             let { username, email, password, phoneNumber, address } = req.body
-            let hashedPassword = hashPassword(password)
-            const createdUser = await User.create({ username, email, password: hashedPassword, phoneNumber, address })
+            const createdUser = await User.create({ username, email, password, phoneNumber, address })
             const transporter = nodemailer.createTransport({
                 service: "Gmail",
                 auth: {
@@ -20,7 +19,6 @@ class UserController {
                     pass: process.env.PASSWORD_EMAIL,
                 },
             });
-
             async function main() {
                 // send mail with defined transport object
                 const info = await transporter.sendMail({
@@ -68,21 +66,20 @@ class UserController {
             if (!user) {
                 throw {
                     name: "Unauthorized",
-                    message: 'Email wrong'
+                    message: 'Invalid email/password'
                 }
             }
             const isPasswordCorrect = comparePassword(password, user.password);
             if (!isPasswordCorrect) {
                 throw {
                     name: "Unauthorized",
-                    message: 'Email or password is required'
+                    message: 'Invalid email/password'
                 }
             }
             const access_token = signToken({ id: user.id })
 
             res.status(200).json({ access_token, id: user.id })
         } catch (error) {
-            console.log(error.message);
             next(error)
         }
     }
@@ -90,6 +87,7 @@ class UserController {
     static async googleLogin(req, res, next) {
         try {
             const { google_token } = req.body
+            console.log(google_token);
 
             const ticket = await client.verifyIdToken({
                 idToken: google_token,
@@ -118,6 +116,17 @@ class UserController {
                 "id": user.id
             })
 
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getUserInfo(req, res, next) {
+        try {
+            const user = await User.findAll({
+                attributes: ['username', 'phoneNumber', 'email'],
+            })
+            res.json(user)
         } catch (error) {
             next(error)
         }

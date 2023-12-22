@@ -4,34 +4,34 @@ const errorHandler = (error, req, res, next) => {
 
     switch (error.name) {
         case "BadRequest":
-            status = 400
+            sendError(res, 400, error.message || "Bad Request");
             break;
         case "Unauthorized":
             status = 401
-            message = "Unauthorized"
+            sendError(res, 401, "Unauthorized");
             break;
         case "SequelizeValidationError":
         case "SequelizeUniqueConstraintError":
-            status = 400
-            message = error.errors[0].message
+            sendError(res, 400, error.errors[0].message);
             break;
         case "InvalidToken":
         case "JsonWebTokenError":
-            status = 401
-            message = "Invalid token"
+            sendError(res, 401, "Invalid token");
             break;
         case "Forbidden":
-            status = 403
-            message = "You are not authorized"
+            sendError(res, 403, "You are not authorized");
             break;
         case "NotFound":
-            status = 404
-            message = "Data not found"
+            sendError(res, 404, "Data not found");
+            break;
+        default:
+            sendError(res, status, message);
             break;
     }
-    res.status(status).json({
-        message
-    })
 }
 
-module.exports = errorHandler
+const sendError = (res, status, message) => {
+    res.status(status).json({ message });
+};
+
+module.exports = { errorHandler, sendError };
